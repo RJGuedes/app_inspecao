@@ -1,0 +1,11 @@
+:host {
+  ion-list {
+    margin: 0;
+    padding: 0;
+    ion-item {
+      ion-icon {
+        margin-inline-end: 16px;
+      }
+    }
+  }
+}

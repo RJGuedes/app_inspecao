@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" [hidden]="searchEnabled">
+      <ion-back-button [text]=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title [hidden]="searchEnabled">{{ entity?.label }}</ion-title>
+    <ion-searchbar
+      #searchBar
+      [debounce]="500"
+      color="dark"
+      (ionChange)="setSearch($event)"
+      [showCancelButton]="true"
+      (ionCancel)="searchEnabled = false"
+      [hidden]="!searchEnabled"
+      [placeholder]="'Pesquisar...'"
+      autofocus
+    ></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="hasMenuActions(entity)" (click)="openPopover($event)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar
+    class="filter-toolbar"
+    [hidden]="!(query?.filter | keyvalue)?.length"
+  >
+    <ion-buttons>
+      <span>Filtrado por:</span>
+      <ion-button
+        fill="outline"
+        color="dark"
+        size="small"
+        (click)="removeFilter(filter.value)"
+        *ngFor="let filter of query?.filter | keyvalue"
+      >
+        {{ filtersLabel[filter?.value['field']] }}: {{
+        renderFilter(filter.value) }}
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ngx-datatable
+      #datatable
+      [ngClass]="{hasFilter: (query?.filter | keyvalue)?.length}"
+      class="material fullscreen striped"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [rows]="(data$ | async)"
+      [rowIdentity]="rowIdentity"
+      [trackByProp]="'id'"
+      [scrollbarV]="true"
+      [scrollbarH]="true"
+      [columnMode]="'force'"
+      [columns]="cols"
+      [sorts]="[{ prop: 'modifiedAt', dir: 'desc' }]"
+      [messages]="{emptyMessage: 'Nenhum registro encontrado.'}"
+      [externalPaging]="true"
+      [count]="totalElements"
+      [offset]="query.offset ? query.offset : 0"
+      [limit]="query?.limit ? query.limit : 0"
+      [virtualization]="false"
+      (page)="setPage($event)"
+      [externalSorting]="true"
+      [loadingIndicator]="loading"
+      (sort)="setSort($event)"
+    >
+      <!--ngx-datatable-footer>
+        <ng-template
+          ngx-datatable-footer-template
+          let-rowCount="rowCount"
+          let-pageSize="pageSize"
+          let-selectedCount="selectedCount"
+          let-curPage="curPage"
+          let-offset="offset"
+        >
+          <div style="padding: 5px 10px">
+            <div>
+              {{ rowCount }} {{ entity?.label | lowercase }}. {{curPage}} / {{pageSize}} // {{ offset }}
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-footer-->
+    </ngx-datatable>
+    <ng-template #buttonsTemplate let-row="row" let-value="value">
+      <ion-buttons>
+        <ion-button
+          color="medium"
+          fill="clear"
+          size="small"
+          (click)="detail(row)"
+          *ngIf="actions['detail']"
+        >
+          <ion-icon name="eye" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-button
+          color="medium"
+          fill="clear"
+          size="small"
+          (click)="report(row)"
+          *ngIf="actions['report']"
+          [disabled]="row?.completed"
+        >
+          <ion-icon name="clipboard-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-button
+        color="medium"
+        fill="clear"
+        size="small"
+        (click)="print(row)"
+        *ngIf="actions['print']"
+      >
+        <ion-icon name="print-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
+        <ion-button
+          color="primary"
+          fill="clear"
+          size="small"
+          (click)="edit(row)"
+          *ngIf="actions['edit']"
+        >
+          <ion-icon name="create" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button
+          color="danger"
+          fill="clear"
+          size="small"
+          (click)="remove(row)"
+          *ngIf="actions['remove']"
+        >
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </div>
+</ion-content>

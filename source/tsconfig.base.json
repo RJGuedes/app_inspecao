@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@seyconel/config": ["libs/config/src/index.ts"],
+      "@seyconel/formly-field-ia-file": [
+        "libs/formly-field-ia-file/src/index.ts"
+      ],
+      "@seyconel/formly-field-ia-select": [
+        "libs/formly-field-ia-select/src/index.ts"
+      ],
+      "react-native-sqlite-storage": ["tools/empty.js"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

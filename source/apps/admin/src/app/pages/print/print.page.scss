@@ -1,0 +1,19 @@
+:host {
+  ion-icon {
+    font-size: 5em;
+  }
+
+  .userprofile {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 419px) {
+    .profile,
+    .settings,
+    .customer,
+    .user {
+      display: inline-block;
+      padding-left: 11px;
+    }
+  }
+}

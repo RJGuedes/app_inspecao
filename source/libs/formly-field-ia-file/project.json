@@ -1,0 +1,20 @@
+{
+  "name": "formly-field-ia-file",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/formly-field-ia-file/src",
+  "prefix": "seyconel",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/formly-field-ia-file/src/**/*.ts",
+          "libs/formly-field-ia-file/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

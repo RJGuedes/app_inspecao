@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar *ngIf="selected">
+    <ion-buttons slot="start">
+      <ion-button (click)="selected = null">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ selected?.label }}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      placeholder="Buscar"
+      (ionChange)="search($event)"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-container *ngIf="visibleItems">
+    <ion-list
+      *ngIf="
+        visibleItems &&
+        visibleItems.length > 0 &&
+        visibleItems[0].value !== undefined
+      "
+      lines="full"
+    >
+
+        <ion-item
+          *ngFor="let item of visibleItems"
+          button
+          [detail]="true"
+          (click)="selectSubmit(item)"
+        >
+          <ion-icon
+            slot="start"
+            [color]="item.value === value ? 'primary' : 'medium'"
+            name="checkmark"
+          ></ion-icon>
+          <ion-label>
+            <h2>{{ item?.label }}</h2>
+          </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list
+      *ngIf="
+        visibleItems &&
+        visibleItems.length > 0 &&
+        visibleItems[0].value === undefined
+      "
+      lines="full"
+    >
+      <ng-container *ngIf="!selected">
+        <ion-radio-group [value]="value" (ionChange)="radioChange($event)">
+
+            <ion-item
+              *ngFor="let item of visibleItems | sortBy: 'asc':'label'"
+              [detail]="true"
+              button
+              (click)="selected = item"
+            >
+            <ion-icon
+            slot="start"
+            [color]="parent?.label === item.label ? 'primary' : 'medium'"
+            name="checkmark"
+          ></ion-icon>
+
+              <ion-label>
+                <h2>{{ item?.label }}</h2>
+              </ion-label>
+            </ion-item>
+        </ion-radio-group>
+      </ng-container>
+      <ng-container *ngIf="selected && selected.group">
+
+            <ion-item
+             *ngFor="let item of selected.group | sortBy: 'asc':'label'"
+              (click)="selectSubmit(item)"
+              button
+              [detail]="true"
+            >
+              <ion-icon
+                slot="start"
+                [color]="item.value === value ? 'primary' : 'medium'"
+                name="checkmark"
+              ></ion-icon>
+              <ion-label>
+                <h2>{{ item?.label }}</h2>
+              </ion-label>
+            </ion-item>
+      </ng-container>
+    </ion-list>
+  </ng-container>
+</ion-content>
+<!--ion-footer>
+  <ion-button
+    expand="full"
+    (click)="onSubmit()"
+    class="ion-margin-vertical"
+    type="submit"
+    form="filter-form"
+    [disabled]="!selected"
+    >Selecionar</ion-button
+  >
+</ion-footer-->

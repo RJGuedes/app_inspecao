@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons [slot]="'start'">
+      <ion-back-button [defaultHref]="backButton()"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="entityId === 'customers'">Clientes</ion-title>
+    <ion-title *ngIf="entityId === 'surveys'">Vistorias</ion-title>
+    <ion-title *ngIf="entityId === 'sectors'">Setores</ion-title>
+    <ion-title *ngIf="entityId === 'items'">Itens</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button (click)="getSync()" *ngIf="entityId === 'customers'">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [lines]="'full'" *ngIf="(data$ | async)">
+    <ion-list-header color="medium" *ngIf="title">{{ title }}</ion-list-header>
+    <ion-item
+      button
+      [detail]="true"
+      *ngFor="let doc of (data$ | async); trackBy:trackById; let k = index;"
+      (click)="open(doc)"
+    >
+      <ion-icon
+        slot="start"
+        [color]="doc.sync ? 'success' : 'medium' "
+        [name]="doc.sync ? 'checkmark-done' : 'checkmark'"
+      ></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h2 *ngIf="doc?.name">{{ doc?.name }}</h2>
+        <h2 *ngIf="doc?.traceability">{{ doc?.traceability }}</h2>
+
+        <p *ngIf="!param?.customerId">CNPJ: {{ doc?.cnpj }}</p>
+        <p *ngIf="doc.syncedAt">
+          Sincronizado em: {{ doc.syncedAt | date:'dd/MM/yy HH:mm' }}
+        </p>
+        <p *ngIf="!doc.syncedAt">
+          Cadastrado em: {{ doc.createdAtLocal | date:'dd/MM/yy HH:mm' }}
+        </p>
+        <p class="list-badges" *ngIf="doc?.approved !== undefined">
+          <ion-badge *ngIf="doc?.approved" color="success">Aprovado</ion-badge>
+          <ion-badge *ngIf="!doc?.approved" color="danger">Reprovado</ion-badge>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="infiniteScroll($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

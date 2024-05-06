@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Filtrar {{ entity?.label | lowercase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form id="filter-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <formly-form
+      [form]="form"
+      [fields]="fields"
+      [model]="model"
+      [options]="options"
+    ></formly-form>
+  </form>
+  {{model | json}}
+</ion-content>
+<ion-footer>
+  <ion-button
+    expand="full"
+    (click)="onSubmit()"
+    class="ion-margin-vertical"
+    type="submit"
+    form="filter-form"
+    >Filtrar</ion-button
+  >
+</ion-footer>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ entity?.label }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()"> Salvar </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <formly-form
+      [form]="form"
+      [fields]="fields"
+      [model]="model"
+      [options]="options"
+    ></formly-form>
+    <ion-button class="ion-margin-vertical" type="submit">Salvar</ion-button>
+  </form>
+</ion-content>

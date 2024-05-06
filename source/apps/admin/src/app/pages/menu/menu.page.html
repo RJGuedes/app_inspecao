@@ -1,0 +1,41 @@
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ appConfig?.title }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-menu-toggle
+          auto-hide="false"
+          *ngFor="let p of appPages; let i = index"
+        >
+          <ion-item
+            (click)="navTo(p.url)"
+            button
+            lines="none"
+            detail="false"
+            [ngClass]="{selected: isMenuSelected(p)}"
+          >
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>{{ p.label }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-text class="ion-padding">
+          {{ (auth.currentUser | async)?.name }}
+        </ion-text>
+        <ion-buttons slot="end">
+          <ion-button (click)="navTo('/logout')">
+            <ion-icon slot="icon-only" name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

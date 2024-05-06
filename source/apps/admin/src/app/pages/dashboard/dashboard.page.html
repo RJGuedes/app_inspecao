@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="ion-text-center ion-margin">
+    <ion-icon name="person"></ion-icon>
+    <h1>Bem-vindo, {{ (auth.currentUser | async)?.name }}</h1>
+  </section>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="6"
+        size-sm="4"
+        *ngFor="let item of appConfig.entities | keyvalue"
+      >
+        <ion-card
+          [routerLink]="'/admin/' + item.value.id + '/list' "
+          button
+          color="primary"
+          class="ion-padding ion-text-center"
+        >
+          <ion-icon [name]="item.value.icon"></ion-icon>
+          <h2 class="profile">{{item.value.label}}</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

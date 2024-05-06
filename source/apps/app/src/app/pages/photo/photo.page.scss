@@ -1,0 +1,26 @@
+:host {
+  .photo-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .photo-full {
+    max-width: none;
+  }
+
+  div.scrollx {
+    position: absolute;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

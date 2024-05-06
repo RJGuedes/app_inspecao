@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons [slot]="'start'">
+      <ion-back-button [defaultHref]="backButton()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="entityId === 'customers'">Cliente</ng-container>
+      <ng-container *ngIf="entityId === 'surveys'">Vistoria</ng-container>
+      <ng-container *ngIf="entityId === 'sectors'">Setor</ng-container>
+      <ng-container *ngIf="entityId === 'items'"
+        >{{model?.traceability}}</ng-container
+      >
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        [hidden]="segment !== 'data'"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
+        Salvar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="entityId === 'items'">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="data">Dados</ion-segment-button>
+      <ion-segment-button [disabled]="!id" value="photos"
+        >Fotos</ion-segment-button
+      >
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    [hidden]="segment !== 'data'"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
+    <formly-form
+      [form]="form"
+      [fields]="fields"
+      [model]="model"
+      [options]="options"
+    ></formly-form>
+  </form>
+
+  <ion-grid [hidden]="segment !== 'photos'">
+    <ion-row>
+      <ion-col *ngFor="let photo of photos; let k = index" size="6">
+        <ion-thumbnail (click)="openPicture(photo, k )">
+          <img [src]="photo.thumb" />
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer [hidden]="segment !== 'photos'">
+  <ion-toolbar>
+    <ion-button
+      *ngIf="photos "
+      (click)="takePhoto()"
+      expand="block"
+    >
+      Adicionar foto
+      <ion-icon slot="end" name="camera"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

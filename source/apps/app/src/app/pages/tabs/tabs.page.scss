@@ -1,0 +1,34 @@
+:host {
+  ion-tabs {
+    ion-tab-bar {
+      contain: none;
+    }
+
+    ion-fab {
+      width: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      bottom: 0;
+      pointer-events: none;
+      padding-bottom: var(--ion-safe-area-bottom);
+    }
+    ion-fab-button {
+      pointer-events: auto;
+      margin: -20px auto 8px;
+      width: 60px;
+      height: 60px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .add-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+}

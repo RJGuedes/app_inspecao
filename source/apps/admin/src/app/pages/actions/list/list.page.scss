@@ -1,0 +1,27 @@
+:host {
+  ion-searchbar {
+    --background: transparent;
+  }
+  ngx-datatable {
+    height: calc(100vh - var(--ia-list-top, 56px));
+  }
+  ngx-datatable.hasFilter {
+    --ia-list-top: 112px;
+  }
+  ion-header {
+    ion-toolbar.filter-toolbar {
+      span {
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding-right: 16px;
+      }
+      ion-buttons {
+        padding-left: 22px;
+        ion-button {
+          text-transform: none;
+        }
+      }
+    }
+
+  }
+}

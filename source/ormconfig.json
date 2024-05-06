@@ -1,0 +1,12 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "seyconel",
+  "entities": ["apps/api/src/app/modules/**/*.entity.ts"],
+  "factories": ["apps/api/src/database/factories/*.ts"],
+  "seeds": ["apps/api/src/database/seeds/*.ts"],
+  "subscribers": ["apps/api/src/app/modules/**/*.subscriber.ts"]
+}

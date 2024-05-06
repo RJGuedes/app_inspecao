@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Conta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="end" name="log-out"></ion-icon>
+        Sair
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="(auth.currentUser | async) === null">
+    <ion-card-header>
+      <ion-card-title>Informações da sua conta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Para sincronizar os dados do aplicativo com o painel você deve ter uma
+      conexão de internet e efetuar o login.
+    </ion-card-content>
+    <ion-list>
+      <ion-item button detail (click)="login()">
+        <ion-label> Fazer login </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="(auth.currentUser | async)">
+    <ion-card-header>
+      <ion-card-title
+        >Olá {{ (auth.currentUser | async)?.name }}!</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content>
+      Para sincronizar os dados do aplicativo com o painel você deve ter uma
+      conexão de internet.
+    </ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <p>Ítens aguardando sincronização: {{ totalWaitingForSync }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button detail (click)="postSync()">
+        <ion-icon slot="start" name="refresh"></ion-icon>
+        <ion-label>
+          <h2>Sincronizar agora</h2>
+          <p *ngIf="lastSyncUpdate">
+            Última sincronização: {{ lastSyncUpdate | date:'dd/MM/yy HH:mm'}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

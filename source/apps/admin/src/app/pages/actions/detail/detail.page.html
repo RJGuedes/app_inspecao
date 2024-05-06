@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ entity?.label }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ng-container *ngFor="let field of fields">
+      <ion-item  (click)="openUrl(model, field)" [button]="field?.url" [detail]="field?.url">
+        <ion-label class="ion-text-wrap">
+          <p>{{ field?.name }}</p>
+          <h2 *ngIf="model">{{ renderField(model, field) }}</h2>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </div>
+</ion-content>

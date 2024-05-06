@@ -1,0 +1,209 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head runat="server">
+    <title>Seyconel</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/css">
+      body {
+        color: #0d326f;
+        margin: 0 !important;
+        overflow: visible !important;
+        font-size: 12px;
+        font-family: 'Open Sans' !important;
+        font-weight: 400;
+      }
+
+      @page {
+        size: auto; /* auto is the initial value */
+        margin: 0mm 0mm 0mm 0mm;
+      }
+
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+      }
+
+      .page {
+        page-break-after: always;
+        padding: 0 12mm;
+      }
+
+      #pageHeader::after {
+        content: '';
+        position: absolute;
+        border: 1px solid rgba(13, 50, 111, 0.8);
+        width: 100%;
+        height: 100%;
+        top: 0;
+      }
+
+      p {
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        text-align: justify;
+        line-height: 20px;
+      }
+      #pageHeader {
+        margin: 6mm;
+        padding: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        position: absolute !important;
+        overflow: visible;
+      }
+
+      #pageHeader .header {
+        margin: 3mm 6mm;
+        padding: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 13.5mm !important;
+        position: absolute !important;
+        overflow: visible;
+      }
+      #pageFooter {
+      }
+      #pageContent {
+      }
+      #pageHeader .header table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9px;
+        border: 1px solid rgba(13, 50, 111, 0.8);
+      }
+      #pageHeader .header table tr {
+        height: 6.7mm;
+      }
+      #pageHeader .header table tr td {
+        height: 6.7mm;
+        border: 1px solid rgba(13, 50, 111, 0.8);
+        margin: 0;
+        text-align: center;
+        color: #0d326f;
+        font-size: 9px;
+        font-family: 'Open Sans' !important;
+      }
+      b {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pageHeader">
+      <div class="header">
+        <table>
+          <tr>
+            <td style="width: 95px" rowspan="2"></td>
+            <td class="bold">
+              <b>RELATÓRIO DE INSPEÇÃO - DEPARTAMENTO DE ENGENHARIA</b>
+            </td>
+            <td><b>Nº DOC:</b></td>
+            <td><b style="color: blue">{{ docNumber }}</b></td>
+          </tr>
+          <tr>
+            <td>LINGAS DE CORRENTE e CINTAS</td>
+            <td><b>DATA:</b></td>
+            <td><b style="color: cyan">{{ docDate }}</b></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div id="pageFooter"></div>
+    <div id="pageContent">
+      <div class="page">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vestibulum metus sit amet urna lobortis sollicitudin. Nulla mattis
+          purus porta lorem tempor, a cursus tellus facilisis. Aliquam pretium
+          nibh vitae elit placerat vestibulum. Duis felis ipsum, consectetur id
+          pellentesque in, porta sit amet sapien. Ut tristique enim sem, laoreet
+          bibendum nisl fermentum vitae. Ut aliquet sem ac lorem malesuada
+          sodales. Fusce iaculis ipsum ex, in mollis dolor dapibus sit amet. In
+          convallis felis in orci fermentum gravida a vel orci. Sed tincidunt
+          porta nibh sit amet varius. Donec et odio eget odio tempus auctor ac
+          eget ex. Pellentesque vitae augue sed purus dictum ultricies at eu
+          neque. Nullam ut mauris a purus tristique euismod.
+        </p>
+        <p>
+          Sed elementum, leo id placerat congue, leo tellus pharetra orci, eget
+          ultricies odio quam sit amet ipsum. Praesent feugiat, lorem at commodo
+          egestas, felis ligula pharetra sapien, in placerat mauris nisi aliquet
+          tortor. Quisque nibh lectus, laoreet vel mollis a, tincidunt vel
+          ipsum. Sed blandit vehicula sollicitudin. Donec et sapien justo. Ut
+          fermentum ipsum imperdiet diam condimentum, eget varius sapien dictum.
+          Sed sed elit egestas libero maximus finibus eu eget massa. Duis
+          finibus vestibulum finibus. Nunc lobortis lacus ut libero mattis
+          tempor. Nulla a nunc at nisl elementum congue. Nunc eu consectetur
+          mauris. Etiam non placerat massa. Etiam eu urna in metus tempus
+          molestie sed eget diam. Nunc sem velit, elementum sit amet fringilla
+          in, dictum sit amet sem. Quisque convallis faucibus purus dignissim
+          dictum. Sed semper, mi vel accumsan sollicitudin, massa massa
+          pellentesque justo, eget auctor sapien enim ac elit. Nullam turpis
+          augue, lacinia ut libero ac, rhoncus bibendum ligula. Mauris
+          ullamcorper maximus turpis, a consequat turpis bibendum sit amet.
+        </p>
+        <p>
+          Nam vitae dui nec velit hendrerit faucibus. Vivamus nunc diam, porta
+          tristique augue nec, dignissim venenatis felis. Proin mattis id risus
+          in feugiat. Etiam cursus faucibus nisi. In in nisi ullamcorper,
+          convallis lectus et, ornare nulla. Cras tristique nulla eros, non
+          maximus odio imperdiet eu. Nullam egestas dignissim est, et fringilla
+          odio pretium eleifend. Nullam tincidunt sapien fermentum, rhoncus
+          risus ac, ullamcorper libero. Vestibulum bibendum molestie dui nec
+          tincidunt. Mauris tempus, orci ut congue vulputate, erat orci aliquam
+          orci, sed eleifend orci dui sed tellus. Pellentesque pellentesque
+          massa vulputate urna pretium, consectetur pulvinar orci pulvinar.
+          Donec aliquet imperdiet ex, et tincidunt risus convallis eget. Etiam
+          eu fermentum lectus, molestie eleifend nisi. Orci varius natoque
+          penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          Nullam dignissim, erat vitae congue molestie, ante urna sagittis est,
+          et sagittis lacus risus vitae est.
+        </p>
+      </div>
+      <div class="page">
+        <p>
+          Sed elementum ipsum et pellentesque dignissim. Sed vehicula feugiat
+          pretium. Donec ex lacus, dictum faucibus lectus sit amet, tempus
+          hendrerit ante. Ut sollicitudin sodales metus, at placerat risus
+          viverra ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Nunc vestibulum metus sit amet urna lobortis sollicitudin. Nulla
+          mattis purus porta lorem tempor, a cursus tellus facilisis. Aliquam
+          pretium nibh vitae elit placerat vestibulum. Duis felis ipsum,
+          consectetur id pellentesque in, porta sit amet sapien. Ut tristique
+          enim sem, laoreet bibendum nisl fermentum vitae. Ut aliquet sem ac
+          lorem malesuada sodales. Fusce iaculis ipsum ex, in mollis dolor
+          dapibus sit amet. In convallis felis in orci fermentum gravida a vel
+          orci. Sed tincidunt porta nibh sit amet varius. Donec et odio eget
+          odio tempus auctor ac eget ex. Duis finibus vestibulum finibus. Nunc
+          lobortis lacus ut libero mattis tempor. Nulla a nunc at nisl elementum
+          congue. Nunc eu consectetur mauris. Etiam non placerat massa. Etiam eu
+          urna in metus tempus molestie sed eget diam. Nunc sem velit, elementum
+          sit amet fringilla in, dictum sit amet sem.
+        </p>
+        <p>
+          Quisque convallis faucibus purus dignissim dictum. Sed semper, mi vel
+          accumsan sollicitudin, massa massa pellentesque justo, eget auctor
+          sapien enim ac elit. Nullam turpis augue, lacinia ut libero ac,
+          rhoncus bibendum ligula. Mauris ullamcorper maximus turpis, a
+          consequat turpis bibendum sit amet. Nam vitae dui nec velit hendrerit
+          faucibus. Vivamus nunc diam, porta tristique augue nec, dignissim
+          venenatis felis. Proin mattis id risus in feugiat. Etiam cursus
+          faucibus nisi. In in nisi ullamcorper, convallis lectus et, ornare
+          nulla. Cras tristique nulla eros, non maximus odio imperdiet eu.
+          Nullam egestas dignissim est, et fringilla odio pretium eleifend.
+          Nullam tincidunt sapien fermentum, rhoncus risus ac, ullamcorper
+          libero.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
