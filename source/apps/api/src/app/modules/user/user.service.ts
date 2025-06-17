@@ -21,7 +21,7 @@ export class UserService extends TypeOrmCrudService<UserEntity> {
   async findByEmail(email: string): Promise<UserEntity | undefined> {
     return this.userRepository.findOne({
       where: { email },
-      select: ['id', 'name', 'email', 'password'],
+      select: ['id', 'name', 'email', 'password', 'customerId', 'token', 'expiraToken', 'isAdmin', 'expiraAccess'],
     });
   }
 }
