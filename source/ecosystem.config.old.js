@@ -33,4 +33,16 @@ module.exports = {
       PM2_SERVE_HOMEPAGE: '/index.html',
     }
   }],
+  deploy: {
+    production: {
+      key: './cert/SEY-WEB01.pem',
+      user: 'sey-web',
+      host: 'ec2-18-228-62-195.sa-east-1.compute.amazonaws.com',
+      ref: 'origin/master',
+      repo: 'git@github.com:leoruhland/seyconel-nx.git',
+      path: '/home/sey-web/seyconel-app',
+      'pre-deploy': 'git reset --hard',
+      'post-deploy': 'export NODE_OPTIONS=--max_old_space_size=4096 && pnpm install && pnpm exec nx build api --prod && pnpm exec nx build admin --prod && pm2 reload ecosystem.config.js --env production'
+    }
+  }
 };

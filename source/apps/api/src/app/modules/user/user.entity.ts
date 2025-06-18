@@ -19,15 +19,15 @@ export class UserEntity extends IaBaseEntity {
   @Column({ nullable: true })
   token: string;
 
-  @Column({type: 'datetime' })
+  @Column({type: 'timestamp' })
   expiraToken: Date;
 
   @Column({ default: false })
   isAdmin: boolean;
 
-  @Column({ type: 'timestamp' })
-  expiraAccess: Date;
-  
+  @Column ({ length: 255 })
+  passwordPortal: string;
+
   @OneToMany(() => LogEntity, (log) => log.user)
   logs?: LogEntity[];
 }

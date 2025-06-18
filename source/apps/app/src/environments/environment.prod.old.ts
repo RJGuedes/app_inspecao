@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://inspecao.seyconel.com.br/api',
+  apiUrl: 
+  'https://seyapi.leoruhland.com/api',
 };

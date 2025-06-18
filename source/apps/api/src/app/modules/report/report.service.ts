@@ -352,9 +352,7 @@ export class ReportService extends TypeOrmCrudService<ReportEntity> {
       .font('Helvetica')
       .fillColor(this.colors.black)
       .text(
-        `( ${locals?.approved ? 'X' : ' '} ) APROVADO      ( ${
-          !locals?.approved ? 'X' : ' '
-        } ) REPROVADO`,
+        `( ${locals?.approved ? 'X' : ' '} ) APROVADO      ( ${!locals?.approved ? 'X' : ' '} ) REPROVADO`,
         60,
         360,
         {
